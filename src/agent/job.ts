@@ -233,7 +233,7 @@ export class JobRunner {
                     taskResult = agentifm.TaskResult.Abandoned;                 
                 }
                 if (item.enabled && !task_errors || item.alwaysRun) {
-                    taskContext.setTaskStarted(item.name);
+                    taskContext.setTaskStarted(item.displayName);
                     _this.runTask(item, taskContext, (err) => {
                         var taskResult: agentifm.TaskResult = taskContext.result;
                         if (err || taskResult == agentifm.TaskResult.Failed) {
@@ -258,7 +258,7 @@ export class JobRunner {
                         }
 
                         trace.write('taskResult: ' + taskResult);
-                        taskContext.setTaskResult(item.name, taskResult);
+                        taskContext.setTaskResult(item.displayName, taskResult);
                         taskContext.end();
                         done(err);
                     });
@@ -269,7 +269,7 @@ export class JobRunner {
                         var taskResult: agentifm.TaskResult = agentifm.TaskResult.Skipped;    
                     }
                     trace.write('taskResult: ' + taskResult);
-                    taskContext.setTaskResult(item.name, taskResult);
+                    taskContext.setTaskResult(item.displayName, taskResult);
                     done(err);
                 }
             }, function (err) {
