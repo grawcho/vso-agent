@@ -124,8 +124,8 @@ export function beforeJob(executionContext: cm.IExecutionContext, callback) {
         // Do the work, optionally clean and get sources
         //
         if (endpoint.data['clean'].replaceVars(job.environment.variables) === "true") {
-            var behavior = job.environment.variables['build.clean'];
-            if (behavior && behavior.toLowerCase() === 'delete') {
+            var behavior = job.environment.variables['Build.Clean'];
+            if (behavior === 'delete' || behavior === 'source') {
                 executionContext.info('deleting ' + repoPath);
                 shell.rm('-rf', repoPath);
                 return 0;
