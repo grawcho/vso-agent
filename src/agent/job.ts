@@ -243,7 +243,7 @@ export class JobRunner {
                     var taskResult: agentifm.TaskResult = taskContext.result;
                     if (err || taskResult == agentifm.TaskResult.Failed) {
                         if (item.continueOnError) {
-                            taskResult = jobResult = agentifm.TaskResult.Failed;
+                            taskResult = jobResult = agentifm.TaskResult.SucceededWithIssues;
                             err = null;
                         } else {
                             taskResult = jobResult = agentifm.TaskResult.Failed;
